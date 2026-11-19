@@ -5,7 +5,7 @@
 ## 📖 Overview
 A 3D psychological horror game set in a Vietnamese cultural context, featuring modular environment design and AI-driven enemy behaviors. Developed as a showcase of Object-Oriented Programming (OOP) architectures and performance optimization in Unity.
 
-* **Engine:** Unity 2022.3 LTS
+* **Engine:** Unity 6 (6000.0.31f1)
 * **Language:** C#
 * **3D Modeling & Texturing:** Blender 4.x
 * **Status:** In Development (Targeting PC)
