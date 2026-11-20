@@ -25,80 +25,73 @@ A 3D psychological horror game set in a Vietnamese cultural context, featuring m
 3. Open the `UnityProject` folder via Unity Hub (Version 2022.3.x).
 4. Load the `Scenes/MainLevel` scene and press Play.
 
-#------------------------------------------------------------------------------------------#
-Cấu trúc thư mục & Quy tắc đặt tên
+## Project Structure & Naming Conventions
 
-Có thể bổ sung ở tương lai.
+### 1. Directory Structure (`Assets`)
 
-1. Cấu trúc thư mục (Assets)
+```text
 Assets/
-└── _16YearCall/                  # Thư mục chính chứa toàn bộ TN Game
-    ├── Art/                      # Tài nguyên đồ họa
-    │   ├── Animations/           # File chuyển động & Animation (.anim)
-    │   ├── Materials/            # Vật liệu URP (.mat)
-    │   ├── Models/               # Model 3D xuất từ Blender (.fbx)
-    │   │   ├── Characters/       # NVC, NPC, Ghost
-    │   │   ├── Environment/      # Tường, cửa, trần,...
-    │   │   └── Props/            # Đồ vật tương tác
-    │   ├── Shaders/              # Shader tùy chỉnh (ánh sáng)
-    │   └── Textures/             # Ảnh bề mặt
-    ├── Audio/                    # Âm thanh
-    │   ├── BGM/                  # Nhạc nền, tiếng gió, tiếng mưa,...
-    │   └── SFX/                  # Tiếng bước chân, tiếng mở cửa,...
-    ├── Prefabs/                  # Các đối tượng đã lắp ráp hoàn chỉnh để tái sử dụng
-    │   ├── Enemies/              # Prefabs quái vật
-    │   ├── Environment/          # Cụm phòng, khung ghép sẵn,...
-    │   ├── Interactables/        # Cửa mở được, công tắc đèn,...
-    │   └── Player/               # Prefab NVC góc nhìn thứ nhất
-    ├── Scenes/                   # Các màn chơi (Main Menu, Level1,...)
-    ├── Scripts/                  # Mã nguồn C#
-    │   ├── Core/                 # GameManager, AudioManager,...
-    │   ├── Enemy/                # State Machine (Patrol, Chase, Attack,...)
-    │   ├── Interaction/          # DoorController, Flashlight,...
-    │   ├── Player/               # PlayerMovement, CameraLook,...
-    │   └── UI/                   # MainMenuUI, PauseMenu, SubtitleSystem,...
-    └── UI/                       # Hình ảnh giao diện, icon tâm ngắm
-Settings/
-ThirdParty/                       # Chứa các gói Asset tải từ bên ngoài về
-Quy tắc đặt tên (Phải đặt bằng tiếng Anh)
-1. Đặt tên Assets
-a. Model 3D
-Vật thể: SM_TenVatThe
-Nhân vật: SM_TenNhanVat
-b. Texture
+├── _16YearCall/                  # Core project directory containing all game-specific resources
+│   ├── Art/                      # Visual assets (PS2 Mid-Poly aesthetic)
+│   │   ├── Animations/           # Animation clips (.anim) & Animator Controllers
+│   │   ├── Materials/            # URP Materials (.mat)
+│   │   ├── Models/               # 3D meshes exported from Blender (.fbx)
+│   │   │   ├── Characters/       # Player, NPCs, Ghost entities
+│   │   │   ├── Environment/      # Walls, doors, ceilings, structural modules
+│   │   │   └── Props/            # Interactive and decorative objects
+│   │   ├── Shaders/              # Custom shaders & lighting effects
+│   │   └── Textures/             # Surface textures (.png, .jpg)
+│   ├── Audio/                    # Sound assets
+│   │   ├── BGM/                  # Background music, ambient wind, rain
+│   │   └── SFX/                  # Footsteps, door creaks, flashlight clicks
+│   ├── Prefabs/                  # Reusable pre-configured GameObjects
+│   │   ├── Enemies/              # Enemy prefabs with NavMeshAgent & AI components
+│   │   ├── Environment/          # Modular room & corridor assemblies
+│   │   ├── Interactables/        # Doors, light switches, collectible items
+│   │   └── Player/               # First-person player controller prefab
+│   ├── Scenes/                   # Game levels (MainMenu, Level01, Dev_Blockout)
+│   ├── Scripts/                  # C# source code organized by OOP modules
+│   │   ├── Core/                 # GameManager, AudioManager, EventSystem
+│   │   ├── Enemy/                # AI State Machine (Patrol, Chase, Attack)
+│   │   ├── Interaction/          # IInteractable, DoorController, Flashlight
+│   │   ├── Player/               # PlayerMovement, CameraLook, PlayerStats
+│   │   └── UI/                   # MainMenuUI, PauseMenu, SubtitleSystem
+│   └── UI/                       # HUD sprites, crosshairs, fonts
+├── Settings/                     # Unity URP pipeline & volume settings
+└── ThirdParty/                   # External assets & packages
 
-T_TenVatThe_Loai
+### 2. Asset Naming Conventions
 
-Ví dụ: T_WoodenDoor_BaseColor.png
-c. Material
+All project files and folders must follow **PascalCase** in English without spaces or special characters.
 
-M_TenVatThe
+| Asset Type | Prefix / Pattern | Example |
+| :--- | :--- | :--- |
+| **Static Mesh (Props/Env)** | `SM_<ObjectName>.fbx` | `SM_WoodenDoor.fbx` |
+| **Skeletal Mesh (Rigged)** | `SK_<CharacterName>.fbx` | `SK_GhostEntity.fbx` |
+| **Texture** | `T_<AssetName>_<MapType>.png` | `T_WoodenDoor_BaseColor.png` |
+| **Material** | `M_<AssetName>.mat` | `M_WoodenDoor.mat` |
+| **Prefab** | `PF_<ObjectName>.prefab` | `PF_InteractableDoor.prefab` |
+| **C# Script** | `<ClassName>.cs` *(Must match class name)* | `PlayerController.cs` |
 
-d. Prefab
+---
 
-PF_TenDoiTuong.prefab
+### 3. Git Workflow (Commits & Branches)
 
-e. Script C#
+#### Commit Message Format
+Follows the **Conventional Commits** specification: `<type>(<scope>): <short description>`
 
-Tên file trùng chính xác với tên Class bên trong.
+| Type | Usage & Purpose | Example |
+| :--- | :--- | :--- |
+| **`feat`** | New gameplay mechanics, player features, or levels | `feat(player): implement first-person movement and camera look` |
+| **`fix`** | Bug fixes, physics/collider issues, null references | `fix(navmesh): resolve enemy stuck issue at doorways` |
+| **`art` / `asset`** | 3D models, textures, lighting, or audio updates | `art(level): blockout hospital corridor using ProBuilder` |
+| **`refactor`** | Code optimization and OOP pattern restructuring | `refactor(core): decouple audio system using Observer pattern` |
+| **`chore` / `docs`** | Project setup, `.gitignore`, packages, or documentation | `docs(readme): add project structure and naming conventions` |
 
-Ví dụ: PlayerController.cs
-2. Đặt tên Commit và Tên Nhánh
-a. Commit
+#### Branch Naming Format
+Keep `main` clean and production-ready. Create dedicated branches for active development using `<type>/<topic>/<date-or-tag>`:
 
-Cấu trúc: <type>(<scope>): <mô tả ngắn gọn bằng tiếng Anh>
-
-Tiền tố <type>	Ý nghĩa & khi nào dùng
-feat	Thêm tính năng mới, cơ chế gameplay, nhân vật, map mới.
-fix	Sửa lỗi (bug), lỗi vật lý, lỗi va chạm, lỗi null reference.
-art / asset	Thêm hoặc chỉnh sửa model 3D, texture, âm thanh, ánh sáng.
-refactor	Tối ưu code sạch hơn, áp dụng Design Pattern (OOP) mà không đổi tính năng.
-chore / docs (main)	Cấu hình project, cập nhật .gitignore, gói package, viết README.md.
-b. Tên nhánh
-
-Ví dụ:
-
-feat/<tên-tính-năng>/<thời gian đăng>
-art/<tên-phần-đồ-họa>/<thời gian>
-fix/<tên-lỗi>/<thời gian>
-Refactor/<tên-phần-tối-ưu-code>
+* **Feature:** `feat/<feature-name>/<date>` (e.g., `feat/flashlight-system/2026-11`)
+* **Art / Level:** `art/<asset-or-level-name>/<date>` (e.g., `art/level01-blockout/2026-11`)
+* **Bug Fix:** `fix/<issue-name>/<date>` (e.g., `fix/door-collider-bug/2026-11`)
+* **Refactor:** `refactor/<module-name>` (e.g., `refactor/interaction-system`)
