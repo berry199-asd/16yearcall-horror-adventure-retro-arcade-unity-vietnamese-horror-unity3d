@@ -58,7 +58,8 @@ Assets/
 │   │   └── UI/                   # MainMenuUI, PauseMenu, SubtitleSystem
 │   └── UI/                       # HUD sprites, crosshairs, fonts
 ├── Settings/                     # Unity URP pipeline & volume settings
-└── ThirdParty/                   # External assets & packages
+└── ThirdParty/                   # External assets & packages.
+```
 
 ### 2. Asset Naming Conventions
 
